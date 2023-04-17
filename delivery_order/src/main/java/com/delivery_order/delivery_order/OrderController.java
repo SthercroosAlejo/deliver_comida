@@ -4,12 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {
+
+    private List<Food> menu = new ArrayList<>();
+
+    public OrderController() {
+      // Agregamos algunos platos al menú para probar
+      menu.add(new Food("Hamburguesa", "Deliciosa hamburguesa con carne y queso", 10.99));
+      menu.add(new Food("Pizza", "Pizza recién horneada con tus ingredientes favoritos", 12.99));
+      menu.add(new Food("Ensalada", "Ensalada fresca con lechuga, tomate y otros vegetales", 6.99));
+    }
+    
     @Autowired
     private OrderService orderService;
+
+    @GetMapping("/menu")
+    public List<Food> getMenu() {
+      return menu;
+    }
 
     // Endpoint para crear un nuevo pedido
     @PostMapping("/create")
