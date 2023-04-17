@@ -4,29 +4,33 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order {
-    private long id;
+    private String id;
     private String customerName;
     private String customerEmail;
-    private boolean status;
+    private String status;
     private LocalDateTime creationTime;
     private LocalDateTime estimatedDeliveryTime;
     private List<Food> items;
 
-    public Order(long id, String customerName, String customerEmail, List<Food> items) {
+    public Order() {
+    }
+
+    public Order(String id, String customerName, String customerEmail, List<Food> items) {
         this.id = id;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.items = items;
-        this.status = true;
+        this.status = "confirmado";
         this.creationTime = LocalDateTime.now();
         this.estimatedDeliveryTime = this.creationTime.plusMinutes(30);
     }
 
-    public long getId() {
+    // getters and setters
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -46,11 +50,11 @@ public class Order {
         this.customerEmail = customerEmail;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
